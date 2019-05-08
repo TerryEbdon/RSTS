@@ -9,43 +9,33 @@
 set XQ disabled
 
 # When idle is disabled the simulator hogs the host CPU.
-set cpu 11/84
-set cpu 4m
-set cpu idle
+set cpu 11/84 4m idle
 
 echo 
 echo ### attach RSTS/E V8 sysgen tape image to MT0:
 echo 
 
-att -r tm0 V8SYSGNK.TAP
+attach -r TM0 V8SYSGNK.TAP
 echo 
-sh tm0
+show TM0
 
 echo 
 echo ### attach RSTS/E V8 sysgen RM03 image
 echo 
 
-att rp0 RSTSV8_System.dsk
-sh rp0
+attach RP0 RSTSV8_System.dsk
+show RP0
 
 echo 
 echo ### Enable CR11 card reader
 echo 
 
-set cr ena
-sh cr
+set CR enabled
+show CR
+
+expect "Option: " send "ID\r"; go
 
 echo 
 echo ### Booting the RSTS/E sysgen disk.
-echo ### This will take while, please be patient.
-echo ### Ignore the "Breakpoint, PC: <blah>", and wait for me to boot.
-nosend
-noexpect
-set break 12106
-b rp0
-echo
-echo Please ignore the breakpoint... I'm still booting!
-set nobreak
-send "ID\r"
-go
-;expect -r ".*Option: "  send "HA LI\r"; go
+boot RP0
+
