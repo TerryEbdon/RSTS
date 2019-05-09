@@ -13,6 +13,8 @@ if exist "%2" set env msg=echo ?VHD already exists
 
 if ( "%msg" != "" ) %msg; return 12
 
+; DSKINT will treat DL3 and RL3 as the same device. A colon is not required.
+
 set env devToFormat=%1
 set env vhdFile=%2
 
@@ -21,7 +23,7 @@ attach -I -N %devToFormat %vhdFile
 send "DSKINT\r"
 expect "?"                            send "%DATE_DD%-%DATE_MMM%-99\r"; go
 expect "?"	                          send "%TIME_HH%:%TIME_MM%\r";     go
-expect "Disk? "                       send "DL3:\r";  go
+expect "Disk? "                       send "%devToFormat\r";            go
 expect "Pack ID? "                    send "TEST\r";  go
 expect "Pack cluster size"            send "\n";      go
 expect "MFD cluster size"             send "\n";      go
