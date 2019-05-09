@@ -1,14 +1,9 @@
-echo 
-echo ### attach RSTS/E V8 sysgen tape image to MT0: **
-echo 
+echo ### Attach RSTS/E V8 sysgen tape image to MT0:
 
 attach -r TM0 V8SYSGNK.TAP
-echo 
-show TM0
+;show TM0
 
-echo 
-echo ### attach RSTS/E V8 sysgen RM03 image **
-echo 
+echo ### Attach RSTS/E V8 sysgen RM03 image
 
 attach RP0 RSTSV8_System.dsk
-show RP0
+;show RP0

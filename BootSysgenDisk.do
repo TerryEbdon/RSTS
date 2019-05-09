@@ -1,3 +1,3 @@
-echo 
-echo ### Booting the RSTS/E sysgen disk. **
+;echo 
+echo ### Booting the RSTS/E sysgen disk.
 boot RP0
