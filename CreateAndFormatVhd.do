@@ -1,7 +1,11 @@
 ;;; @file
 ;;; @author Terry Ebdon
 ;;; @date   08-MAY-19
-;;; Create new VHD and format it.
+;;; @copyright  Terry Ebdon, 2019
+;;; Licensed under the Apache License, Version 2.0
+;;; See the README.md and LICENSE files for details.
+;;;
+;;; @brief Create new VHD and format it.
 ;;; @arg %1 simulated device ID
 ;;; @arg %2 VHD file to create
 ;;; @return error message in environment variable msg

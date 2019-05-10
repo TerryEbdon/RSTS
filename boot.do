@@ -1,7 +1,11 @@
 ;;; @file
-;;; @author Terry Ebdon
-;;; @date   06-MAY-2019
-;;; Configure an 11/84 with 4M of memory & boot RSTS/E V8.
+;;; @author     Terry Ebdon
+;;; @date       06-MAY-2019
+;;; @copyright  Terry Ebdon, 2019
+;;; Licensed under the Apache License, Version 2.0
+;;; See the README.md and LICENSE files for details.
+;;;
+;;; @brief Configure an 11/84 with 4M of memory & boot RSTS/E V8.
 
 set noverify
 set noverbose

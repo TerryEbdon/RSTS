@@ -1,7 +1,11 @@
 ;;; @file
 ;;; @author Terry Ebdon
 ;;; @date   09-MAY-19
-;;; Boot Add a system file using REFRESH
+;;; @copyright  Terry Ebdon, 2019
+;;; Licensed under the Apache License, Version 2.0
+;;; See the README.md and LICENSE files for details.
+;;;
+;;; @brief Boot Add a system file using REFRESH
 ;;; @arg %1 Name of file to create
 ;;; @arg %2 Size of file to create file
 ;;; @warning

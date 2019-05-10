@@ -1,7 +1,11 @@
 ;;; @file
 ;;; @author Terry Ebdon
 ;;; @date   09-MAY-19
-;;; Boot Add swap file 2 and a crash dump file
+;;; @copyright  Terry Ebdon, 2019
+;;; Licensed under the Apache License, Version 2.0
+;;; See the README.md and LICENSE files for details.
+;;;
+;;; @brief Boot Add swap file 2 and a crash dump file
 ;;; @arg %1 Size of swap file
 ;;; @arg %2 Size of crash dump file
 

@@ -1,6 +1,10 @@
-;;; @author Terry Ebdon
-;;; @date   09-MAY-19
-;;; Set defaults, no JOB MAX or SWAP MAX changes
+;;; @author     Terry Ebdon
+;;; @date       09-MAY-19
+;;; @copyright  Terry Ebdon, 2019
+;;; Licensed under the Apache License, Version 2.0
+;;; See the README.md and LICENSE files for details.
+;;;
+;;; @brief Set defaults, no JOB MAX or SWAP MAX changes
 ;;; @arg %1 optional default RTS
 
 set env defaultRts="\n"

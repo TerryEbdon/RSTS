@@ -1,7 +1,11 @@
 ;;; @file
 ;;; @author Terry Ebdon
 ;;; @date   09-MAY-2019
-;;; Configure DZ11 serial ports
+;;; @copyright  Terry Ebdon, 2019
+;;; Licensed under the Apache License, Version 2.0
+;;; See the README.md and LICENSE files for details.
+;;;
+;;; @brief Configure DZ11 serial ports
 
 echo ### Configuring serial ports
 

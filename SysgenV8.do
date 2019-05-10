@@ -1,7 +1,11 @@
 ;;; @file
-;;; @author Terry Ebdon
-;;; @date   09-MAY-2019
-;;; Sysgen RSTS/E V8 from tape on an 11/84.
+;;; @author     Terry Ebdon
+;;; @date       09-MAY-2019
+;;; @copyright  Terry Ebdon, 2019
+;;; Licensed under the Apache License, Version 2.0
+;;; See the README.md and LICENSE files for details.
+;;;
+;;; @brief Sysgen RSTS/E V8 from tape on an 11/84.
 
 set noverify
 set noverbose
