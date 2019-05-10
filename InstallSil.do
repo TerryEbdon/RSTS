@@ -7,6 +7,6 @@ if "%1" == "" set env msg=echo ?No SIL in argument 1
 if ( "%msg" != "" ) %msg; return
 
 send "Install\r"
-expect "Sil?" send "%1\r"; go
+expect -r "Sil(\?)|( <.+>\?)" send "%1\r"; go
 expect "Option: " echo
 go
