@@ -1,7 +1,11 @@
 ;;; @file
-;;; @author Terry Ebdon
-;;; @date   09-MAY-19
-;;; Start RSTS/E with SYSGEN.SIL and run CREATE.SAV
+;;; @author     Terry Ebdon
+;;; @date       09-MAY-19
+;;; @copyright  Terry Ebdon, 2019
+;;; Licensed under the Apache License, Version 2.0
+;;; See the README.md and LICENSE files for details.
+;;;
+;;; @brief Start RSTS/E with SYSGEN.SIL and run CREATE.SAV
 ;;; This will copy files from the distribution tape to
 ;;; the system disk and run the sysgen Q&A with
 ;;; appropriate responses.

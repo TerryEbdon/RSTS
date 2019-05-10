@@ -1,7 +1,11 @@
 ;;; @file
 ;;; @author Terry Ebdon
 ;;; @date   MAY-19
-;;; Copy a minimal system from the boot device
+;;; @copyright  Terry Ebdon, 2019
+;;; Licensed under the Apache License, Version 2.0
+;;; See the README.md and LICENSE files for details.
+;;;
+;;; @brief Copy a minimal system from the boot device
 ;;; @arg RSTS device to copy to, e.g. DR0:
 
 if "%1" == "" set env msg=echo ?No device ID in argument 1

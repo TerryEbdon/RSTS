@@ -1,7 +1,11 @@
 ;;; @file
 ;;; @author Terry Ebdon
 ;;; @date   MAY-19
-;;; Create new VHD and format it.
+;;; @copyright  Terry Ebdon, 2019
+;;; Licensed under the Apache License, Version 2.0
+;;; See the README.md and LICENSE files for details.
+;;;
+;;; @brief Create new VHD and format it.
 ;;; @arg %1 simulated device ID
 ;;; @arg %2 Password for [1,2], defsult is no password.
 ;;; @note You must provide a password if this is the target
