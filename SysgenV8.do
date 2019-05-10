@@ -34,3 +34,4 @@ do SetDefaults.do
 do AddSwapAndCrashFiles.do 256 260
 do BootDevice.do           RP0
 do StartSysgen.do
+do RunSysbat.do
