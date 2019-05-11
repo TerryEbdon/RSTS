@@ -9,11 +9,20 @@
 ;;; This will copy files from the distribution tape to
 ;;; the system disk and run the sysgen Q&A with
 ;;; appropriate responses.
+;;; @arg %1 Device distribution kit is mounted on, defaults to MT0:
+;;; @arg %2 For a disk distribution, the label of the pack to be mounted.
+
+set ent ddDev=MT0:
+if "%1" != "" set env ddDev=%1
 
 send "\n"
 do InitDateTime.do
 
-expect "?Can't find file or account" send "R MT0:CREATE.SAV\r"; go
+expect "?Can't find file or account" echo
+if "%2" != "" send "MOUNT %ddDev%%2\r"
+
+send "R %ddDev%CREATE.SAV\r"
+go
 
 expect "Form ?"         send "\n"; go
 expect "Same system ?"  send "\n"; go
@@ -28,7 +37,7 @@ expect "LP for SYSGEN ?                 #NO#"    send "\n";  go
 expect "Generate monitor ?              #Y #"    send "\n";  go
 expect "Monitor name ?                  #RSTS#"  send "\n";  go
 
-; No pathes on the distribution tape.
+; No patches on the distribution tape.
 ; I'll come back to this later.
 expect "Monitor patching ?              #??#"    send "NO\r";  go
 
