@@ -7,7 +7,9 @@
 ;;;
 ;;; @brief Create new VHD and format it.
 ;;; @arg %1 simulated device ID
-;;; @arg %2 Password for [1,2], defsult is no password.
+;;; @arg %2 Password for [1,2], default is no password.
+;;; @arg %3 Send DSKINT command, defaults to NO. Set to YES for RSTS 9
+;;;
 ;;; @note You must provide a password if this is the target
 ;;; drive for a sysgen. CREATE.SAV will fail if there is no
 ;;; [1,2] password.
@@ -22,31 +24,36 @@ if "%2" != "" set env password=%2\r
 set env devToFormat=%1
 echo ### Initialising disk %devToFormat% -- This will take a while...
 
-send "DSKINT\r"
-do InitDateTime.do
+if "%3" != "YES" send "DSKINT\r"; InitDateTime.do
+
 expect "Disk? "                       send "%devToFormat%\r"; go
 expect "Pack ID? "                    send "TEST\r";          go
 expect "Pack cluster size"            send "\n";              go
 expect "MFD cluster size"             send "\n";              go
 expect "SATT.SYS base"                send "\n";              go
 expect "Pre-extend directories <NO>?" send "\n";              go
-expect "PUB, PRI, or SYS <PRI>?"      send "\n";              go
+expect "PUB, PRI, or SYS"             send "\n";              go
+
+; The next three questions will not be asked on V9 booted from tape.
+;
 expect "Create account [1,1] <NO>?"   send "\n";              go
 expect "Create account [1,2] <NO>?"   send "YES\r";           go
 expect "[1,2] password <*>?"          send "%password%";      go
+
+; [1,1] Cluster size asked only on V9?
+expect "[1,1] cluster size"           send "\n";              go
 expect "[1,2] cluster size"           send "\n";              go
 expect "[1,1] and [1,2] account base" send "\n";              go
 expect "Date last modified"           send "\n";              go
 expect "New files first"              send "\n";              go
 expect "Read-only <NO>?"              send "\n";              go
 
-
 ; This is only asked if the pack
 ; already has bad block info.
-expect "Use previous bad block info"  send "YES\r"             go
+expect "Use previous bad block info"  send "YES\r";           go
 
 ; The format question is not always asked.
-; When booted from tape it *is* asked.
+; When booted from a tape it *is* asked.
 
 expect "Format <NO>?"                 send "\n";      go
 expect "Patterns <3>?"                send "\n";      go
