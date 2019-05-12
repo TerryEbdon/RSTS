@@ -12,5 +12,15 @@ if ( "%msg" != "" ) %msg; return
 
 send "Install\r"
 expect -r "Sil(\?)|( <.+>\?)" send "%1\r"; go
+
+; Pre-v9 and, sometimes, V9
 expect "Option: " echo
+
+; V9
+expect "Start timesharing?" echo
+
 go
+; Only one of these expectations will have been fulfilled.
+; Flush the redundant one.
+noexpect "Option: "
+noexpect "Start timesharing?"
