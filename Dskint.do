@@ -24,7 +24,7 @@ if "%2" != "" set env password=%2\r
 set env devToFormat=%1
 echo ### Initialising disk %devToFormat% -- This will take a while...
 
-if "%3" != "YES" send "DSKINT\r"; InitDateTime.do
+if "%3" != "YES" send "DSKINT\r"; do InitDateTime.do
 
 expect "Disk? "                       send "%devToFormat%\r"; go
 expect "Pack ID? "                    send "TEST\r";          go
