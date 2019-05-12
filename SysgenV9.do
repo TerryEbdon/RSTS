@@ -39,17 +39,20 @@ show RP0
 do InitDateTime.do
 expect "Installing RSTS on a new system disk? <Yes>" send "\n"
 do BootDevice.do TM0
-
+echo
 do Dskint.do DR0 SYSTEM YES
 expect "Start timesharing? <Yes>"
 go
 ; RSTS V9 runs performs COPY automatically.
 send "\n"
 noexpect
+detach TM1
+attach -r TM1 %libTapeImage%
 do V9/StartSysgen.do
 go
-detach tm1
-attach -r TM2 %libTapeImage%
+det TM1
+attach -r TM1 %ansiTapeImage%
+send "MT1:\r"
 
 do V9/BasicPlusGeneration.do
 ;
@@ -59,6 +62,10 @@ nosend
 expect "Do you want to proceed with the default installation" send "YES\r"; go
 expect "ARE THE ABOVE DEFAULTS THE DESIRED ONES" send "YES\r"; go
 expect "System tape label default set to DOS"
-;
-; @todo shutdown
-; @todo install RSTS.SIL
+
+expect "$" send "! Sysgen complete, shutting down to install SIL\r"; go
+expect "$" send "run shutup\r"; go
+expect "Minutes until system shutdown (0-99) <5>?" send "0\r"; go
+expect "Start timesharing?" echo
+do InstallSil.do RSTS
+go
