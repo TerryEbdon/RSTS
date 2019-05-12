@@ -12,7 +12,7 @@
 ;;; @arg %1 Device distribution kit is mounted on, defaults to MT0:
 ;;; @arg %2 For a disk distribution, the label of the pack to be mounted.
 
-set ent ddDev=MT0:
+set env ddDev=MT0:
 if "%1" != "" set env ddDev=%1
 
 send "\n"
@@ -20,11 +20,15 @@ do InitDateTime.do
 
 expect "?Can't find file or account" echo
 if "%2" != "" send "MOUNT %ddDev%%2\r"
-
-send "R %ddDev%CREATE.SAV\r"
 go
+send "R %ddDev%CREATE.SAV\r"
 
 expect "Form ?"         send "\n"; go
+;;;
+;expect "Same system ?"  return
+;go
+;return
+;;;
 expect "Same system ?"  send "\n"; go
 
 ; This step may be an issue, as the distribution
@@ -54,59 +58,73 @@ go
 ; Start of hardware configuration
 
 ; Terminals
-expect "DL11A compatible lines ?        *01*"   send "\n";    go
-expect "DL11C, DL11D's ?                *00*"   send "\n";    go
-expect "DL11E,DLV11E's ?                *00*"   send "\n";    go
-expect "DJ11's ?                        *00*"   send "\n";    go
-expect "DH11's ?                        *00*"   send "\n";    go
+do %~p0../common/SerialCards.do
+;expect "DL11A compatible lines ?        *01*"   send "\n";    go
+;expect "DL11C, DL11D's ?                *00*"   send "\n";    go
+;expect "DL11E,DLV11E's ?                *00*"   send "\n";    go
+;expect "DJ11's ?                        *00*"   send "\n";    go
+;expect "DH11's ?                        *00*"   send "\n";    go
+;expect "DZ11 unit 00 lines enabled ?    #08#"   send "\n";    go
+;expect "DZ11 unit 01 lines enabled ?    #08#"   send "\n";    go
+;expect "Dataset support for DZ11's ?    #NO#"   send "\n";    go
+
 expect "DZ11/DZV11's ?                  *02*"   send "\n";    go
 expect "Multiplexer type (DZ11/DZV11) ? #DZ11#" send "\n";    go
-expect "DZ11 unit 00 lines enabled ?    #08#"   send "\n";    go
-expect "DZ11 unit 01 lines enabled ?    #08#"   send "\n";    go
-expect "Dataset support for DZ11's ?    #NO#"   send "\n";    go
-expect "Pseudo keyboards ?              #04#"   send "\n";    go
 expect "2741 support ?                  #NO#"   send "\n";    go
-expect "Multi-terminal service ?        #Y #"   send "\n";    go
-expect "Echo control ?                  #Y #"   send "\n";    go
-expect "One-line status report ?        #Y #"   send "\n";    go
-expect "FMS-11 support ?                #NO#"   send "\n";    go
-expect "Multiple private delimiters ?   #NO#"   send "\n"
-go
+
+do %~p0../common/TerminalOptions.do
+
+;expect "Pseudo keyboards ?              #04#"   send "\n";    go
+;expect "Multi-terminal service ?        #Y #"   send "\n";    go
+;expect "Echo control ?                  #Y #"   send "\n";    go
+;expect "One-line status report ?        #Y #"   send "\n";    go
+;expect "FMS-11 support ?                #NO#"   send "\n";    go
+;expect "Multiple private delimiters ?   #NO#"   send "\n"
+;go
 
 ; Disks
 expect "RF/RS11's ?                     *NO*"   send "\n";    go
 expect "RS03/RS04's ?                   *00*"   send "\n";    go
-expect "RK05's ?                        #08#"   send "\n";    go
-expect "Overlapped seek ?               *Y *"   send "\n";    go
-expect "RL01/RL02's ?                   *04*"   send "\n";    go
-expect "Overlapped seek ?               *Y *"   send "\n";    go
-expect "RK06/RK07's ?                   *08*"   send "\n";    go
-expect "Overlapped seek ?               *Y *"   send "\n";    go
-expect "RP02/RP03's ?                   *00*"   send "\n";    go
+do %~p0../common/DiskOptions.do
+
+;expect "RK05's ?                        #08#"   send "\n";    go
+;expect "Overlapped seek ?               *Y *"   send "\n";    go
+;expect "RL01/RL02's ?                   *04*"   send "\n";    go
+;expect "Overlapped seek ?               *Y *"   send "\n";    go
+;expect "RK06/RK07's ?                   *08*"   send "\n";    go
+;expect "Overlapped seek ?               *Y *"   send "\n";    go
+;expect "RP02/RP03's ?                   *00*"   send "\n";    go
+
 expect "RM02/RM03/RM05/RM80's ?         *08*"   send "\n";    go
 expect "Overlapped seek ?               *Y *"   send "\n";    go
 expect "RP04/RP05/RP06's ?              *00*"   send "\n";    go
 expect "MSCP controllers ?              *01*"   send "\n";    go
 
 ; Tapes
-expect "TU16/TE16/TU45/TU77's ?         *00*"   send "\n";    go
-expect "TU10/TE10/TS03's ?              #08#"   send "\n";    go
-expect "TS11/TSV05/TU80's ?             *00*"   send "\n";    go
-expect "DECtapes ?                      *00*"   send "\n";    go
+;expect "TU16/TE16/TU45/TU77's ?         *00*"   send "\n";    go
+;expect "TU10/TE10/TS03's ?              #08#"   send "\n";    go
+;expect "TS11/TSV05/TU80's ?             *00*"   send "\n";    go
+;expect "DECtapes ?                      *00*"   send "\n";    go
+
+do %~p0../common/TapeOptions.do
 expect "TU58's ?                        *00*"   send "\n";    go
 
-; Printers, floppies & punch devices
-expect "Printers ?                      *01*"   send "\n";    go
-expect "RX01/RX02's ?                   #08#"   send "\n";    go
-expect "CR11/CM11 card reader ?         *NO*"   send "YES\r"; go
-expect "CD11 card reader ?              *NO*"   send "\n";    go
-expect "Card decode ?                   #ANSI#" send "\n";    go
-expect "P.T. reader / punch ?           *Y *"   send "\n";    go
+do %~p0../common/SlowMedia.do
+
+;; Printers, floppies & punch devices
+;expect "Printers ?                      *01*"   send "\n";    go
+;expect "RX01/RX02's ?                   #08#"   send "\n";    go
+;expect "CR11/CM11 card reader ?         *NO*"   send "YES\r"; go
+;expect "CD11 card reader ?              *NO*"   send "\n";    go
+;expect "Card decode ?                   #ANSI#" send "\n";    go
+;expect "P.T. reader / punch ?           *Y *"   send "\n";    go
+;expect "Extended buffering for LP ?     #Y #"   send "\n";    go
+
+do %~p0../common/MicroControllers.do
+;expect "DMC11's/DMR11's ?               *00*"   send "\n";    go
+;expect "KMC11's ?                       *00*"   send "\n";    go
 
 expect "DECnet network support ?        #NO#"   send "\n";    go
-expect "DMC11's/DMR11's ?               *00*"   send "\n";    go
-expect "KMC11's ?                       *00*"   send "\n";    go
-expect "Extended buffering for LP ?     #Y #"   send "\n";    go
 expect "Maximum jobs ?                  #10#"   send "15\r";  go
 expect "Small buffers ?                 #215"   send "\n";    go
 expect "System wide logicals ?          #25#"   send "\n";    go
