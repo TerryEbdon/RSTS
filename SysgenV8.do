@@ -40,3 +40,19 @@ do BootDevice.do           RP0
 do V8/StartSysgen.do
 do RunSysbat.do
 go
+
+; At this point the new SIL has been built. Let's try using it...
+
+send "RUN UTILTY\r"
+expect "\r\n*" send "NO LOGINS\r";  go
+expect "\r\n*" send "SHUTUP\r";     go
+expect "Option" echo
+go
+do InstallSil.do  RSTS
+do SetDefaults.do BASIC
+; SWAP and CRASH files were created in an earlier step.
+; Now start the system running the new SIL and RTS...
+send "\n"
+do InitDateTime.do
+expect "Ready"
+go
