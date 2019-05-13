@@ -13,10 +13,10 @@ if "%1" == "" set env msg=echo ?arg 1 must be a valid size for a swap file
 if "%2" == "" set env msg=echo ?arg 2 must be a valid size for a crash dump file
 if ( "%msg" != "" ) %msg; return
 
-do AddSystemfile.do SWAP.SYS  %1
+do AddSystemFile.do SWAP.SYS  %1
 noexpect
 
 if ( "%msg" != "" ) %msg; return
 
-do AddSystemfile.do CRASH.SYS %2
+do AddSystemFile.do CRASH.SYS %2
 noexpect
