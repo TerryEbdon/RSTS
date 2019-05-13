@@ -13,5 +13,6 @@ if ( "%msg" != "" ) %msg; return
 
 echo ### Booting RSTS/E from device %1
 
-expect "Option: " echo
+do common/ExpectOptionPrompt.do noflush
 boot %1
+do common/FlushExpectOptions.do
