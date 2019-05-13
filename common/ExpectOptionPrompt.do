@@ -22,4 +22,4 @@ expect "Start timesharing?" echo
 ;
 if "%1" == "noflush" return
 go
-do FlushExpectOptions.do
+do %~p0/FlushExpectOptions.do
