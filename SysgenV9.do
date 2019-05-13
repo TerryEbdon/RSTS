@@ -38,7 +38,7 @@ show RP0
 ;return
 do InitDateTime.do
 expect "Installing RSTS on a new system disk? <Yes>" send "\n"
-do BootDevice.do TM0
+do common/BootDevice.do TM0
 echo
 do Dskint.do DR0 SYSTEM YES
 expect "Start timesharing? <Yes>"

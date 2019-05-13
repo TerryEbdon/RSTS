@@ -21,7 +21,7 @@ do AttachSysgenMediaV8.do %sv8_diskImage%
 
 if "%msg%" != "" exit
 
-do BootDevice.do TM0
+do common/BootDevice.do TM0
 
 ; RSTS refers to RP0: as DR0:
 ; Must provide a [1,2] password to avoid CREATE.SAV failing in a later step.
@@ -36,7 +36,7 @@ noexpect
 do InstallSil.do SYSGEN
 do SetDefaults.do
 do AddSwapAndCrashFiles.do 256 260
-do BootDevice.do           RP0
+do common/BootDevice.do           RP0
 do V8/StartSysgen.do
 do RunSysbat.do
 go
