@@ -56,10 +56,10 @@ expect "\r\nReady\r\n" send "COMPILE\r"; go
 expect "\r\nReady\r\n"
 go
 noexpect
-send "! UTILTY and REACT are now available.\r!\r"
+echo UTILTY and REACT are now available.
 expect "?Pack IDs don't match\r\n" noexpect; set env msg=echo ?Bad pack label in arg 3 - %cdfdb_packLabel%
 expect "?Account or device in use\r\n" noexpect; set env msg=echo ?Disk already mounted?
-if "%3" != "" send "MOUNT %cdfdb_targetDev%%cdfdb_packLabel%\r"
+if "%3" != "" send "MOUNT %cdfdb_targetDev%%cdfdb_packLabel%\r"; %expectReady%; go
 
 do AddAccount.do [1,2] 16 %cdfdb_targetDev%*
 if "%msg%" != "" nosend; noexpect; %msg%; return
