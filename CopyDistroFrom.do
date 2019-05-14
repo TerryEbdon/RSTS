@@ -73,7 +73,7 @@ expect "\r\n*"                                send "%CTRL-Z%\r"; go
 
 expect "\r\nReady\r\n"
 go
-if "%msg%" != "" %msg% %expectReady%; %abort%; go
+if "%msg%" != "" %msg%; %expectReady%; %abort%; go
 
 noexpect
 set env cdfdb_disDev
