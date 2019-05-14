@@ -8,7 +8,7 @@
 ;;; @brief Create new VHD and format it.
 ;;; @arg %1 simulated device ID
 ;;; @arg %2 Password for [1,2], default is no password.
-;;; @arg %3 Send DSKINT command, defaults to NO. Set to YES for RSTS 9
+;;; @arg %3 Suppress sending DSKINT command, defaults to NO. Set to YES for RSTS 9
 ;;;
 ;;; @note You must provide a password if this is the target
 ;;; drive for a sysgen. CREATE.SAV will fail if there is no
@@ -25,6 +25,8 @@ set env devToFormat=%1
 echo ### Initialising disk %devToFormat% -- This will take a while...
 
 if "%3" != "YES" send "DSKINT\r"; do InitDateTime.do
+
+expect "?Illegal disk name\r\n" noexpect; set env msg=echo ?Bad disk name %devToFormat% in arg 1
 
 expect "Disk? "                       send "%devToFormat%\r"; go
 expect "Pack ID? "                    send "TEST\r";          go
