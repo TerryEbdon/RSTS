@@ -15,3 +15,4 @@ send "RUN $SYSBAT\r"
 expect "Unit ? " send "%unitNo%\r"; go
 expect "Unit ? " send "%unitNo%\r"; go
 expect "Unit ? " send "%unitNo%\r"; go
+expect "Batch job completed.\r\n"
