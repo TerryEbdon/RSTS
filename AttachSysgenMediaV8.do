@@ -26,7 +26,7 @@ set env diskToAttach=RSTSV8_System.dsk
 
 if ( "%1" != "" ) set env diskToAttach=%1
 
-echo --- Attach RSTS/E V8 sysgen RM03 image to %diskToAttach% to RP0
+echo --- Attach RSTS/E V8 sysgen RM03 disk image %diskToAttach% to RP0
 
 if not exist "%diskToAttach%" set env msg=echo ?VHD does not exist: %diskToAttach%
 
