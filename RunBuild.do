@@ -16,6 +16,7 @@ if "%2"=="" set env msg=echo ?Control file is mandatory
 set env distDev=%1
 set env ctlFile=%2
 
+expect "?Program lost-Sorry" noexpect; set env msg=echo ?Couldn't run BUILD
 send "RUN %distDev%$BUILD\r"
 expect "System Build <No> ?"                  send "YES\n"; go
 expect "Source Input Device"                  send "%distDev%\r";  go
@@ -37,3 +38,9 @@ expect "Create account SY:[2,3] <No>?"        send "YES\r"; go
 
 expect "Additional Control File is"           send "\n"; go
 expect "Processing ended" echo
+go
+if "%msg%" != "" ignore; %msg%
+
+noexpect
+set env distDev
+set env ctlFile
