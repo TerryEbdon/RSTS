@@ -9,6 +9,7 @@
 ;;; @arg %1 Device distribution kit is mounted on.
 ;;; @arg %2 PPN containing distribution kit.
 
+do common/SetVars.do
 if "%1" == "" set env msg=echo ?arg 1 should be the device ID for distribution kit
 if "%2" == "" set env msg=echo ?arg 2 should PPN the for distribution kit
 if "%msg%" != "" %msg%; return
@@ -22,7 +23,8 @@ expect "Enter distribution device/PPN" send "%distroDevice%%distroPpn%\r"; go
 expect "Enter output device/PPN" send "SY:[200,200]\r"; go
 expect "Attempt to create account SY:[200,200]" send "YES\r"; go
 expect "Packages to patch?" send "ALL\r"; go
-expect "\r\nReady\r\n"
+expect "Logically Dismount %distroDevice%" send "NO\r"; go
+%expectReady%
 go
 if "%msg%" != "" ignore; %msg%
 
