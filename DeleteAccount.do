@@ -25,7 +25,7 @@ expect "Function?"     send "D\r";          go
 expect "Proj,Prog?"    send "%ppn%\r";      go
 expect "Disk?"         send "%device%\r";   go
 expect "Proj,Prog?"    send "%CTRL-Z%";     go
-pect "\r\nReady\r\n"
+expect "\r\nReady\r\n"
 go
 set env ppn
 set env device
