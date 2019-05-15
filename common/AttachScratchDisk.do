@@ -18,10 +18,12 @@ if "%msg%" != "" ignore; %msg%; return
 set env acd_scratchDev=%1
 set env acd_scratchVhd=%2
 
-if exist "%acd_scratchVhd%" delete %acd_scratchVhd%
+echo --- Creating scratch RK07 in VHD %acd_scratchVhd% & attaching to %acd_scratchDev%
+if exist "%acd_scratchVhd%" delete %acd_scratchVhd%; echo ... Deleted old scratch VHD
 set %acd_scratchDev% RK07
 attach -n %acd_scratchDev% %acd_scratchVhd%
+echo ... New VHD attached.
 set -Y %acd_scratchDev% BADBLOCK
-
+echo ... Bad block data written to VHD.
 set env acd_scratchVhd
 set env acd_scratchDev
