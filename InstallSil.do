@@ -9,18 +9,14 @@
 
 if "%1" == "" set env msg=echo ?No SIL in argument 1
 if ( "%msg" != "" ) %msg; return
+set env silToInstall=%1
+
+echo ### Installing SIL %silToInstall%
 
 send "Install\r"
-expect -r "Sil(\?)|( <.+>\?)" send "%1\r"; go
+expect -r "Sil(\?)|( <.+>\?)" send "%silToInstall%\r"; go
+expect "File not found\r\n" set env msg=echof '\n?InstallSil.do: SIL %silToInstall% not found!'
 
-; Pre-v9 and, sometimes, V9
-expect "Option: " echo
+do common/ExpectOptionPrompt.do
 
-; V9
-expect "Start timesharing?" echo
-
-go
-; Only one of these expectations will have been fulfilled.
-; Flush the redundant one.
-noexpect "Option: "
-noexpect "Start timesharing?"
+if "%msg%" != "" ignore; %msg%; exit
