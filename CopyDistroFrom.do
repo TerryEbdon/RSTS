@@ -57,7 +57,7 @@ expect "\r\nReady\r\n"
 go
 noexpect
 echo UTILTY and REACT are now available.
-expect "?Pack IDs don't match\r\n" noexpect; set env msg=echo ?Bad pack label in arg 3 - %cdfdb_packLabel%
+expect "?Pack IDs don't match\r\n" noexpect; set env msg=echo %0: ?Bad pack label in arg 3 - %cdfdb_packLabel%
 expect "?Account or device in use\r\n" noexpect; set env msg=echo ?Disk already mounted?
 if "%3" != "" send "MOUNT %cdfdb_targetDev%%cdfdb_packLabel%\r"; %expectReady%; go
 
