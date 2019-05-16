@@ -64,8 +64,10 @@ expect "Format <NO>?"                 send "\n";      go
 
 ; Try with zero patterns, which is faster and will work if there's factory
 ; error information.
-
 expect "Patterns <3>?"                send "0\r";     go
+
+; "Erase Disk?" is only asked on V9
+expect "Erase Disk <YES>?"            send "NO\r";    go
 expect "Proceed (Y or N)?"            send "Y\r";     go
 
 ; If there's no factory error info,
