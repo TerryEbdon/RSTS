@@ -15,7 +15,7 @@
 ;;; [1,2] password.
 ;;; @warning This may leave unused expectations
 
-do common/setVars.do
+do common/SetVars.do
 
 if "%1" == "" set env msg=echo ?No device ID in argument 1
 if ( "%msg" != "" ) %msg; return
