@@ -3,3 +3,6 @@
 *.TAP
 *.dsk
 *.vhd
+/logs
+/distro
+/simh
