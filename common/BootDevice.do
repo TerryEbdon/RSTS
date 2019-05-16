@@ -10,9 +10,13 @@
 
 if "%1" == "" set env msg=echo ?No device ID in argument 1
 if ( "%msg" != "" ) %msg; return
+set env bootDev=%1
 
 echo ### Booting RSTS/E from device %1
-
+expect "?PLEASE BOOT FROM THE SYSTEM DISK." echof "%0 ?Can't boot from %bootDev%"; exit
 do common/ExpectOptionPrompt.do noflush
-boot %1
+boot %bootDev%
 do common/FlushExpectOptions.do
+
+set env bootDev
+noexpect "?PLEASE BOOT FROM THE SYSTEM DISK."
