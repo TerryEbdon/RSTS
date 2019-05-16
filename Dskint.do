@@ -28,6 +28,7 @@ echo ### Initialising disk %devToFormat% -- This will take a while...
 
 if "%3" != "YES" send "DSKINT\r"; do InitDateTime.do
 
+expect "Drive not ready:" noexp; set env msg=echof "%0 ?Drive %devToFormat% not ready"; return
 expect "?Illegal disk name\r\n" noexpect; set env msg=echo ?Bad disk name %devToFormat% in arg 1
 
 expect "Disk? "                       send "%devToFormat%\r"; go
