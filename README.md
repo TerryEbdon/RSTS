@@ -3,11 +3,13 @@
 A project to track my experiments with a PDP-11 emulator running RSTS/E.
 
 The \*.do files are simh Simulator Control Protocol (SCP) scripts. They are
-*not*, as Git Hub claims, stato source files.
+*not*, as Git Hub claims, stata source files. The scripts should be host OS
+independent, but I've only tested on Windows.
 
 The sysgen scripts, SysgenV8.do and SysgenV9.do, are used to build to
 corresponding RSTS/E versions from a tape distribution kit. (I use the ones from
-rsts.org). The target system is configured using the following scripts in the common/ folder:
+rsts.org). The target system is configured using the following scripts in the
+common/ folder:
 
 - MicroControllers.do
 - SerialCards.do
@@ -35,9 +37,10 @@ does this matter? because the build control files on the tape use /mode:2 to
 prevent the tape from being rewound. I work around this by copying the files to
 a scratch disk, a 28 MB RK07, and building from disk.
 
-This script takes about 13 minutes to run, on a 10 year old 32-bit windows 7
+This script takes about 13 minutes to run, on a 10 year old 32-bit Windows 7
 laptop. It creates two log files, one of the simulator's debug output and a
-second using PuTTY to log all interaction with RSTS.
+second using [PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/) to log
+all interaction with RSTS.
 
 At script completion you have a working system with a minimal set of system
 programs. You'll be logged into [1,2], the system library account. If that's
@@ -49,9 +52,10 @@ programs, in the near future.
 
 - PDP11.exe from the simh distribution. I'm using V4.0-0.
 
-- PuTTY is assumed to be on the path, and used for logging only. You can comment
-out the PuTTY setup to disable this, but that would make problem diagnoses a lot
-harder.
+- [PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/) is assumed to be
+ on the path, and used for logging only. You can comment out the
+ [PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/) setup to disable
+ this, but that would make problem diagnoses a lot harder.
 
 ## RSTS/E V9.5
 
@@ -65,8 +69,16 @@ V9.5 build.
 ### Prerequisites
 
 - PDP11.exe from the simh distribution. I'm using V4.0-0.
+- V95BOOT.TAP - The V9.5 boot tape image
+- V95ANSI.TAP - The V9.5 ANSI tape image
+- V9LIB.TAP - The V9 library tape image
+
+All the above tapes are available in the
+[distros/RSTS_tapes/](http://rsts.org/autoindex.php?dir=distros/RSTS_tapes/)
+folder at rsts.org.
 
 ### Optional extras
 
-This build does not require PuTTY, but you'll probably want to install it
-anyway.
+This build does not require
+[PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/), but you'll
+probably want to install it anyway.
