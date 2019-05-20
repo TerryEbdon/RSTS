@@ -7,7 +7,6 @@
 ;;;
 ;;; @brief Sysgen RSTS/E V8 from tape on an 11/84.
 
-do common/SetVars.do
 set noverify
 set noverbose
 set message
@@ -20,17 +19,18 @@ det RP0
 det HK1
 det TM0
 
-set env consolePort=8001
-set env logDir=logs
-set env logPrefix=%logDir%/%~n0
-set env debugLog=%logPrefix%_debug.log
-set env puttyLog=%logPrefix%_putty.log
+do common/SettupLogging %0
+;set env consolePort=8001
+;set env logDir=logs
+;set env logPrefix=%logDir%/%~n0
+;set env debugLog=%logPrefix%_debug.log
+;set env puttyLog=%logPrefix%_putty.log
 
-;if not exist "%logDir%" !mkdir %logDir%
-!mkdir %logDir%
-if exist "%debugLog%" delete %debugLog%
-if exist "%puttyLog%" delete %puttyLog%
-set debug %debugLog%
+;;if not exist "%logDir%" !mkdir %logDir%
+;!mkdir %logDir%
+;if exist "%debugLog%" delete %debugLog%
+;if exist "%puttyLog%" delete %puttyLog%
+;set debug %debugLog%
 
 ; PuTTY will not be attached to the console until RSTS/E boots.
 ; This avoids having a distracting blank window hanging around.,
@@ -102,5 +102,10 @@ if "%msg%" != "" ignore; msg; exit
 do RunPatCpy.do       DM1: [1,2]
 if "%msg%" != "" ignore; msg; exit
 
-do RunBuild.do        DM1: BUILD
-if "%msg%" != "" ignore; msg; exit
+do RunBuild.do DM1:
+do RunBuild.do DM1: BIGPRG  SY:[2,3]
+do RunBuild.do DM1: DCL
+do RunBuild.do DM1: HELP    SY:[2,4]
+do RunBuild.do DM1: SPLER   SY:[2,5]
+do RunBuild.do DM1: BACKUP  SY:[2,6]
+do RunBuild.do DM1: DEVTST  SY:[2,7]
