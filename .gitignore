@@ -4,6 +4,7 @@
 *.dsk
 *.vhd
 /logs
+*.log
 /distro
 /simh
 *.bak
