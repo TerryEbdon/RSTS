@@ -16,7 +16,7 @@ well as accept pull requests.
 
 ## Use Github Flow
 
-We Use [Github
+We Use [GitHub
 Flow](https://docs.github.com/en/get-started/using-github/github-flow).
 All Code Changes Happen Through Pull Requests
 
