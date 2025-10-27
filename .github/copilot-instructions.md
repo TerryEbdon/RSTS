@@ -1,8 +1,6 @@
 # Project Overview
 
-This project installs a RSTS/E operating system on a simulated PDP-11 mini 
-computer.
-
+This project installs a RSTS/E operating system on a simulated PDP-11 minicomputer.
 ## Coding Standards
 
 - `*.do` files are SIMH SCP scripts. They are *not* Stata source files.
