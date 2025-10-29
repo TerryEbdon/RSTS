@@ -19,7 +19,7 @@ det RP0
 det HK1
 det TM0
 
-do common/SettupLogging %0
+do common/SetupLogging.do %0
 ;set env consolePort=8001
 ;set env logDir=logs
 ;set env logPrefix=%logDir%/%~n0
