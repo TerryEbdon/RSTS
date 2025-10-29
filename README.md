@@ -2,6 +2,8 @@
 
 A project to track my experiments with a PDP-11 emulator running RSTS/E.
 
+This is a beta release with [known issues](docs/known_issues.md).
+
 The \*.do files are simh Simulator Control Protocol (SCP) scripts. They are
 *not*, as Git Hub claims, stata source files. The scripts should be host OS
 independent, but I've only tested on Windows.
