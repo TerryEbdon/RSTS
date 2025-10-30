@@ -77,8 +77,8 @@ V9.5 build.
 
 All the above tapes are available in the [distros/RSTS_tapes/] folder at
 rsts.org.
-[distros/RSTS_tapes/]: http://rsts.org/autoindex.php?dir=distros/RSTS_tapes
 
+[distros/RSTS_tapes/]: http://www.rsts.org/autoindex.php?dir=distros/RSTS_tapes/
 ### Optional extras
 
 This build does not require
