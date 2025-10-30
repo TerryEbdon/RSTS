@@ -1,0 +1,88 @@
+---
+name: "Bug report — RSTS"
+about: "Report a reproducible bug in the RSTS install or PDP‑11 simulation."
+title: "[Bug] "
+labels: bug
+assignees: ''
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please fill in the fields below. Attach the requested logs (*_Debug.log
+        and *_Putty.log) and any small scripts (.do files) that reproduce the
+        issue.
+  - type: input
+    id: release_version
+    attributes:
+      label: Release version
+      description: The release tag or build this report applies to (e.g. v1.2.0)
+      placeholder: e.g. v1.2.3
+      required: true
+  - type: input
+    id: rsts_version
+    attributes:
+      label: RSTS/E version
+      description: Full RSTS/E version shown in the system banner
+      placeholder: e.g. RSTS/E 8.0
+      required: true
+  - type: input
+    id: pdp11_exe_version
+    attributes:
+      label: PDP11.exe (SIMH) version
+      description: simh / PDP11 executable version used to run RSTS
+      placeholder: e.g. PDP11.exe 4.0.0
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Provide a minimal, reproducible sequence of steps.
+      placeholder: |
+        1. Start SIMH with foo.do
+        2. Boot RSTS
+        3. Run command X
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+      description: What you expected to happen
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behaviour
+      description: What actually happened (include error messages)
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Host OS and version, Git commit (if known), any special config
+      placeholder: |
+        Windows 10 21H2
+        commit: abcdef123456
+  - type: markdown
+    attributes:
+      value: |
+        Attachments
+        - Please attach *_Debug.log (SIMH debug log) and 
+        *_Putty.log (serial log).
+        - Attach any small .do scripts, disk images or screenshots that help
+          reproduce the issue.
+  - type: checkbox
+    id: attachments_check
+    attributes:
+      label: I have attached
+      options:
+        - label: Debug log
+          required: true
+        - label: Putty log
+          required: true
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional information
+      description: Anything else that may help diagnose the problem
+      required: false
+---
