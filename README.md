@@ -75,9 +75,9 @@ V9.5 build.
 - V95ANSI.TAP - The V9.5 ANSI tape image
 - V9LIB.TAP - The V9 library tape image
 
-All the above tapes are available in the
-[distros/RSTS_tapes/](http://rsts.org/autoindex.php?dir=distros/RSTS_tapes/)
-folder at rsts.org.
+All the above tapes are available in the [distros/RSTS_tapes/] folder at
+rsts.org.
+[distros/RSTS_tapes/]: http://rsts.org/autoindex.php?dir=distros/RSTS_tapes
 
 ### Optional extras
 
